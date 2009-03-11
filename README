@@ -1,0 +1,66 @@
+sfJqueryWidgetsPlugin
+=====================
+
+The `sfJqueryWidgetsPlugin` is a symfony plugin that adds two jquery widgets to the
+list of available widgets bundled in the framework.
+
+The two widgets are:
+
+  * Drop down list that fires an Ajax request upon DOM event.
+  * Sortable list that fires an Ajax request upon change.
+
+Installation
+------------
+
+  * Install the Plugin
+  
+        $ symfony plugin:install sfJqueryWidgetsPlugin
+      
+  * Clear Your Cache
+  
+        $ symfony cc
+  
+  * Publish Plugins Assets
+  
+        $ symfony plugin:publish-assets
+
+Usage
+-----
+
+### sfWidgetFormPropelSelectAjax
+
+Consider that you want in the admin generator for example to fetch subcategories of a certain category using ajax.
+You already have in the form the drop down list that shows a list of categories, what is missing is the ajax request
+fired upon change of the drop down list. Normally the ajax request is sent to an action that fetches the subcategories
+of the selected category and maybe displays them also in a drop down list.
+
+#### Usage
+  
+We need to change the type of widget used to display the category drop down list from sfWidgetFormPropelSelect to sfWidgetFormPropelSelectAjax
+
+      $this->widgetSchema['category'] = new sfWidgetFormPropelSelectAjax(array(
+      	'model' => 'Category',
+      	'method' => 'getName',
+      	'url' => 'test/ajax'
+      ));
+      
+As you can see in the above snippet we simply specify the __model__ to be used for fetching the records to be displayed in the drop
+down list, next we specify the __method__ used to display the text in the drop down list, and lastly we specify the __url__ to which the
+ajax request is sent to.
+    
+In the _action_ __test/ajax__ you can fetch the _id_ of the selected category from the request parameter __id__
+
+### sfWidgetFormPropelJQuerySortable
+
+This is a really cool and effective widget, it allows sorting of a list of models and it's so easy to use.
+
+#### Usage
+
+      $this->widgetSchema['categories'] = new sfWidgetFormPropelJQuerySortable(array(
+        'model' => 'Category',
+        'url' => 'section/new',
+      ));
+	  
+In the _action_ __section/new__ you can fetch the sorted list using the request parameter __id__
+
+## For a complete list of parameters and examples please refer to the phpdocs included in he plugin

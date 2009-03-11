@@ -1,0 +1,12 @@
+body  { background-color: #c8d1d5; margin: 0px; padding: 0px; font: .7em/1.5em "Lucida Grande","Lucida Sans Unicode", helvetica, verdana, arial, sans-serif; }
+
+/* Banner (top bar) classes */
+
+.banner { padding: 1em; }
+
+.banner-title { text-align: right; font-size: 20pt; font-weight: bold; margin: .2em; color: #6f7e85; }
+
+.banner-menu { clear: both; padding: .5em; border-top: 1px solid #aeb9be; color: #90a7b1; }
+.banner-menu a { color: #598ca3; }
+
+.package-selector { background-color: #AAAADD; border: 1px solid black; color: yellow; }
