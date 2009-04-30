@@ -20,7 +20,7 @@ class sfWidgetFormJQueryColorPicker extends sfWidgetFormInput
      */
     public function configure($options = array(), $attributes = array())
     {
-        parent::configure();
+        parent::configure($options, $attributes);
     }
 
     /**

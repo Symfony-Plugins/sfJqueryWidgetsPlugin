@@ -63,4 +63,14 @@ This is a really cool and effective widget, it allows sorting of a list of model
 	  
 In the _action_ __section/new__ you can fetch the sorted list using the request parameter __id__
 
+### sfWidgetFormColorPicker
+
+This widget embeds [jquery colorpicker](http://www.eyecon.ro/colorpicker/)
+
+#### Usage
+
+     $this->widgetSchema['color'] = new sfWidgetFormColorPicker();
+
+__TODO__ Support of custom parameters
+
 ## For a complete list of parameters and examples please refer to the phpdocs included in he plugin
