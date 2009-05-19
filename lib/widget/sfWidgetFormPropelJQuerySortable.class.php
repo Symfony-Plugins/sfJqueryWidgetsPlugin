@@ -101,6 +101,7 @@ class sfWidgetFormPropelJQuerySortable extends sfWidgetForm
     $this->addOption('beforeSend', null);
     $this->addOption('peer_method', 'doSelect');
     $this->addOption('connection', null);
+    $this->addOption('extra_data', array());
   }
   public function render($name, $value = null, $attributes = array(), $errors = array())
   {
@@ -142,10 +143,6 @@ class sfWidgetFormPropelJQuerySortable extends sfWidgetForm
     $html .= sprintf(<<<EOF
 <script type="text/javascript" charset="utf-8">
   jQuery('#%s').sortable({
-    change: function(e, ui)
-    {
-      serial = jQuery(this).sortable('serialize');
-    },
     start:
       function(e, ui)
       {
@@ -158,7 +155,7 @@ class sfWidgetFormPropelJQuerySortable extends sfWidgetForm
           type:       'POST',
           dataType:   'html',
           url:        '%s',
-          data:       serial,
+          data:       jQuery.param(%s) + '&' + jQuery(this).sortable('serialize')
           %s
         });
       }
@@ -169,7 +166,8 @@ EOF
       $this->getOption('list_id'),
       $this->getOption('start'),
       sfContext::getInstance()->getController()->genUrl($this->getOption('url')),
-      $optional
+      json_encode($this->getOption('extra_data')),
+      empty($optional) ? '' : ',' . $optional
     );
     
     return $html;
